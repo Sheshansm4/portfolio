@@ -1,141 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sheshan S Maniyur - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sheshan S Maniyur — AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --white:#ffffff;
+  --bg:#fafafa;
+  --wash:#F5F3FF;
+  --ink:#1a1a2e;
+  --ink-soft:#4a4a6a;
+  --muted:#8b8baa;
+  --accent:#5B21B6;
+  --accent-mid:#7C3AED;
+  --accent-light:#EDE9FE;
+  --accent-tag:#DDD6FE;
+  --tag-text:#5B21B6;
+  --border:#e8e5f5;
+  --card-shadow:0 1px 3px rgba(91,33,182,0.06), 0 8px 24px rgba(91,33,182,0.04);
+  --syne:'Syne',sans-serif;
+  --inter:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--inter);
+  font-size:15px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 3rem;
+  background:rgba(250,250,250,0.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:var(--syne);font-size:16px;font-weight:800;
+  color:var(--accent);letter-spacing:-0.01em;
+}
+.nav-links{display:flex;gap:2.25rem}
+.nav-links a{
+  font-size:13px;font-weight:500;color:var(--ink-soft);
+  text-decoration:none;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--accent)}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:100px 0 60px;
+  position:relative;overflow:hidden;
+  background:var(--white);
+}
+.hero-watermark{
+  position:absolute;right:-0.05em;top:50%;
+  transform:translateY(-50%);
+  font-family:var(--syne);font-size:38vw;font-weight:800;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(91,33,182,0.06);
+  line-height:1;pointer-events:none;user-select:none;
+  letter-spacing:-0.05em;
+}
+.container{max-width:900px;margin:0 auto;padding:0 3rem}
+.hero-inner{position:relative;z-index:1}
+.hero-status{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11.5px;color:var(--accent);
+  padding:6px 14px;border-radius:999px;
+  background:var(--accent-light);
+  margin-bottom:2rem;letter-spacing:0.02em;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#16a34a;
+  animation:blink 2.2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+
+h1{
+  font-family:var(--syne);
+  font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:800;line-height:1.0;
+  letter-spacing:-0.04em;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+}
+h1 span{color:var(--accent)}
+.hero-role{
+  font-family:var(--mono);font-size:14px;
+  color:var(--muted);margin-bottom:1.75rem;
+  letter-spacing:0.04em;
+}
+.hero-desc{
+  font-size:16px;color:var(--ink-soft);
+  max-width:520px;line-height:1.85;
+  margin-bottom:2.5rem;font-weight:300;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 24px;border-radius:10px;
+  font-size:13px;font-weight:600;
+  text-decoration:none;transition:all 0.22s;
+  letter-spacing:0.01em;
+}
+.btn-primary{
+  background:var(--accent);color:#fff;
+  border:1.5px solid var(--accent);
+  box-shadow:0 4px 14px rgba(91,33,182,0.25);
+}
+.btn-primary:hover{background:var(--accent-mid);box-shadow:0 6px 20px rgba(91,33,182,0.35);transform:translateY(-1px)}
+.btn-outline{
+  background:transparent;color:var(--accent);
+  border:1.5px solid var(--accent-tag);
+}
+.btn-outline:hover{background:var(--accent-light);border-color:var(--accent)}
+
+/* ── SECTION SHELL ── */
+.section-white{background:var(--white);padding:6rem 0}
+.section-wash{background:var(--wash);padding:6rem 0}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;
+  color:var(--accent);letter-spacing:0.14em;
+  text-transform:uppercase;margin-bottom:0.5rem;
+}
+.section-heading{
+  font-family:var(--syne);font-size:2rem;font-weight:700;
+  letter-spacing:-0.03em;color:var(--ink);
+  margin-bottom:2.5rem;
+}
+.section-heading em{
+  font-style:normal;color:var(--accent);
+}
+
+/* ── SKILLS STRIP ── */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+}
+.skill-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1.25rem 1.5rem;
+  transition:box-shadow 0.2s,transform 0.2s;
+}
+.skill-card:hover{
+  box-shadow:var(--card-shadow);
+  transform:translateY(-2px);
+}
+.skill-cat{
+  font-family:var(--mono);font-size:10.5px;
+  color:var(--accent);letter-spacing:0.1em;
+  text-transform:uppercase;margin-bottom:0.75rem;
+  font-weight:500;
+}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  font-size:12px;font-weight:500;
+  padding:4px 11px;border-radius:999px;
+  background:var(--accent-tag);
+  color:var(--tag-text);
+  letter-spacing:0.01em;
+}
+
+/* ── PROJECTS ── */
+.project-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:2rem 2rem 2rem 2.25rem;
+  margin-bottom:1.5rem;
+  position:relative;
+  overflow:hidden;
+  transition:box-shadow 0.25s,transform 0.25s;
+}
+.project-card::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--accent) 0%,var(--accent-mid) 100%);
+  border-radius:4px 0 0 4px;
+  opacity:0;transition:opacity 0.25s;
+}
+.project-card:hover{
+  box-shadow:0 4px 32px rgba(91,33,182,0.09);
+  transform:translateY(-2px);
+}
+.project-card:hover::before{opacity:1}
+
+.project-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:1rem;margin-bottom:1rem;flex-wrap:wrap;
+}
+.project-name{
+  font-family:var(--syne);font-size:1.1rem;font-weight:700;
+  letter-spacing:-0.02em;color:var(--ink);
+}
+.project-badge{
+  font-family:var(--mono);font-size:10.5px;
+  padding:4px 12px;border-radius:999px;
+  background:var(--accent-light);
+  color:var(--accent);border:1px solid var(--accent-tag);
+  white-space:nowrap;font-weight:500;
+}
+.project-bullets{list-style:none;margin:0.5rem 0 1.5rem}
+.project-bullets li{
+  font-size:14px;color:var(--ink-soft);
+  padding:0.35rem 0 0.35rem 1.4rem;
+  position:relative;line-height:1.7;
+}
+.project-bullets li::before{
+  content:'▸';
+  position:absolute;left:0;top:0.35rem;
+  color:var(--accent);font-size:11px;
+}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack-tag{
+  font-family:var(--mono);font-size:11px;
+  padding:3px 10px;border-radius:6px;
+  background:var(--wash);
+  border:1px solid var(--border);
+  color:var(--ink-soft);
+}
+
+/* ── EDUCATION / TIMELINE ── */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{
+  content:'';
+  position:absolute;left:6px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,var(--accent) 0%,var(--accent-tag) 100%);
+  border-radius:2px;
+}
+.t-item{
+  position:relative;margin-bottom:2.25rem;
+}
+.t-item:last-child{margin-bottom:0}
+.t-dot{
+  position:absolute;left:-2rem;top:5px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--white);
+  border:2.5px solid var(--accent);
+  box-shadow:0 0 0 3px var(--accent-light);
+}
+.t-dot.muted{border-color:var(--muted);box-shadow:none}
+.t-degree{
+  font-family:var(--syne);font-size:1rem;font-weight:700;
+  letter-spacing:-0.02em;margin-bottom:3px;
+}
+.t-school{font-size:14px;color:var(--ink-soft)}
+.t-year{
+  font-family:var(--mono);font-size:11.5px;
+  color:var(--accent);margin-top:5px;letter-spacing:0.04em;
+}
+
+/* ── CERT ── */
+.cert-row{
+  display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.5rem;
+  background:var(--wash);
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-top:2rem;
+}
+.cert-pill{
+  font-family:var(--mono);font-size:10.5px;
+  padding:4px 10px;border-radius:6px;
+  background:var(--accent);color:#fff;
+  white-space:nowrap;font-weight:500;
+}
+.cert-name{font-size:14px;color:var(--ink-soft)}
+
+/* ── CONTACT ── */
+#contact{text-align:center}
+.contact-heading{
+  font-family:var(--syne);
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:800;letter-spacing:-0.04em;
+  color:var(--ink);margin-bottom:1rem;
+}
+.contact-sub{
+  font-size:15px;color:var(--muted);
+  margin-bottom:2.5rem;max-width:400px;
+  margin-left:auto;margin-right:auto;
+}
+.contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.contact-link{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:11px 22px;border-radius:10px;
+  font-size:13px;font-weight:500;
+  text-decoration:none;color:var(--ink);
+  background:var(--white);
+  border:1.5px solid var(--border);
+  transition:all 0.2s;
+}
+.contact-link:hover{
+  border-color:var(--accent-tag);
+  background:var(--accent-light);
+  color:var(--accent);
+}
+.contact-link svg{width:16px;height:16px;flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:2rem 3rem;
+  font-family:var(--mono);font-size:11.5px;
+  color:var(--muted);border-top:1px solid var(--border);
+  background:var(--white);
+}
+
+@media(max-width:640px){
+  nav{padding:1rem 1.25rem}
+  .nav-links{gap:1.5rem}
+  .container{padding:0 1.25rem}
+  .section-white,.section-wash{padding:4rem 0}
+  .hero-watermark{font-size:55vw;right:-0.02em}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sheshan S Maniyur</h1>
-            <p>Aspiring AI Engineer</p>
-            <nav>
-                <ul>
-                    <li><a href="#summary">Summary</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="summary">
-        <div class="container">
-            <h2>Professional Summary</h2>
-            <p>A highly motivated and technically curious Fresher with a strong interest in Machine Learning, NLP, and RAG-based systems. Eager to apply and expand knowledge in designing and developing AI applications using Python, Flask, and AWS. Passionate about building agentic workflows and managing complex context to deliver scalable ML solutions in dynamic environments.</p>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Sheshan.</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-    <section id="skills">
-        <div class="container">
-            <h2>Skills</h2>
-            <ul>
-                <li><strong>AI & LLM Tools:</strong> LLM, RAG Systems, LangChain, LlamaIndex, OpenAI API, Prompt Engineering, Hugging Face Transformers, Vector Databases (FAISS, Chroma).</li>
-                <li><strong>Machine Learning:</strong> Regression, Classification, Clustering, Feature Engineering, Model Evaluation, Hyperparameter Tuning.</li>
-                <li><strong>Programming:</strong> Python (NumPy, Pandas, Scikit-Learn, PyTorch), SQL.</li>
-                <li><strong>Data Engineering:</strong> Exploratory Data Analysis (EDA), Data Cleaning, Visualization.</li>
-                <li><strong>Cloud & DevOps:</strong> AWS (EC2, S3, VPC, Load Balancer), Docker, Git, GitHub, Linux, Flask.</li>
-            </ul>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-watermark">S</div>
+  <div class="container hero-inner">
+    <div class="hero-status">
+      <span class="status-dot"></span>
+      Open to AI/ML roles &amp; internships
+    </div>
+    <h1>Sheshan<br><span>S Maniyur</span></h1>
+    <p class="hero-role">AI/ML Engineer &nbsp;·&nbsp; M.Tech Data Science &nbsp;·&nbsp; Bengaluru</p>
+    <p class="hero-desc">
+      Building intelligent systems from scratch — multi-agent pipelines, RAG architectures, federated learning, and offline NLP applications. Every project ships working, deployable code.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="https://linkedin.com/in/sheshansm" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      <a href="https://github.com/Sheshansm4" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+</section>
 
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Self-Operating Computer (AI-Driven GUI Automation)</h3>
-                <p>Developed an autonomous desktop-interaction agent using multimodal vision-language models, reducing manual effort by 70%.</p>
-                <p><strong>Technologies:</strong> Python, LangChain, OpenAI, Llama, Mistral, FAISS, Chroma</p>
-                <a href="https://github.com/Sheshansm4/self-operating-computer" target="_blank">View on GitHub</a>
-            </div>
-            <div class="project">
-                <h3>Offline YouTube Video Summarizer</h3>
-                <p>Created a fully offline RAG-style summarization system, ensuring complete data privacy and zero cloud dependency.</p>
-                <p><strong>Technologies:</strong> Python, Hugging Face Transformers, FAISS, Flask</p>
-                <a href="https://github.com/Sheshansm4/Offline-YouTube-Summarizer" target="_blank">View on GitHub</a>
-            </div>
-            <div class="project">
-                <h3>Air Quality Prediction System using Big Data Analytics</h3>
-                <p>Built an AI pipeline predicting air quality using real-time Open-Meteo API data and trained various models to achieve 99% accuracy.</p>
-                <p><strong>Technologies:</strong> Python, Scikit-Learn (XGBoost, Random Forest, Logistic Regression), Pandas, NumPy</p>
-                <a href="https://github.com/Sheshansm4/Air-Quality-Prediction-System" target="_blank">View on GitHub</a>
-            </div>
+<!-- SKILLS -->
+<section id="skills" class="section-wash">
+  <div class="container">
+    <div class="eyebrow">Capabilities</div>
+    <h2 class="section-heading">Technical <em>Skills</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">Languages</div>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
         </div>
-    </section>
-
-    <section id="experience">
-        <div class="container">
-            <h2>Relevant Experience</h2>
-            <div class="job">
-                <h3>Self-Operating Computer (AI-Driven GUI Automation)</h3>
-                <ul>
-                    <li>Engineered LLM-based action planning via LangChain workflows to convert natural-language commands into real-time GUI operations.</li>
-                    <li>Architected a model-agnostic orchestration framework compatible with OpenAI, Llama, and Mistral models.</li>
-                    <li>Designed a "See Think Act" control loop achieving <500ms latency for real-time responsiveness.</li>
-                    <li>Increased automation consistency by 25% through optimized Python logic and dynamic tool execution.</li>
-                </ul>
-            </div>
-            <div class="job">
-                <h3>Offline YouTube Video Summarizer</h3>
-                <ul>
-                    <li>Integrated Faster-Whisper ASR achieving 95% transcription accuracy with FAISS-based embedding retrieval.</li>
-                    <li>Developed an abstractive summarization engine using transformer-based models and refined prompt templates.</li>
-                    <li>Deployed a Flask interface for real-time summary generation, increasing content consumption speed by 5x.</li>
-                </ul>
-            </div>
-            <div class="job">
-                <h3>Air Quality Prediction System using Big Data Analytics</h3>
-                <ul>
-                    <li>Enhanced system performance by 35% through advanced preprocessing and hyperparameter tuning.</li>
-                    <li>Delivered visual analytics (heatmaps, confusion matrices) improving interpretability by 50%.</li>
-                </ul>
-            </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">ML / AI</div>
+        <div class="tags">
+          <span class="tag">Scikit-Learn</span>
+          <span class="tag">Random Forest</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">SHAP</span>
+          <span class="tag">Federated Learning</span>
+          <span class="tag">Hugging Face</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Speech-to-Text</span>
         </div>
-    </section>
-
-    <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>JSS Science and Technology University</h3>
-                <p>Masters in Data Science, 2024-present</p>
-            </div>
-            <div class="education-item">
-                <h3>Bangalore Institute of Technology</h3>
-                <p>Bachelors in Electronics and Communication Engineering (CGPA - 7.3), 2018-2022</p>
-            </div>
-            <div class="education-item">
-                <h3>Sri Chaitanya PU College</h3>
-                <p>Physics, Chemistry, Mathematics, Biology (Percentage - 83.05%), 2016-2018</p>
-            </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">LLM &amp; Agents</div>
+        <div class="tags">
+          <span class="tag">LangGraph</span>
+          <span class="tag">Multi-Agent</span>
+          <span class="tag">RAG Pipelines</span>
+          <span class="tag">ChromaDB</span>
+          <span class="tag">Claude API</span>
         </div>
-    </section>
-
-    <section id="certifications">
-        <div class="container">
-            <h2>Licenses & Certifications</h2>
-            <ul>
-                <li>The Complete 2024 DevOps and AWS bootcamp.</li>
-            </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Backend &amp; Pipelines</div>
+        <div class="tags">
+          <span class="tag">Flask</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">REST APIs</span>
         </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:yashasg50@gmail.com">yashasg50@gmail.com</a></p>
-            <p>Phone: +91-7337628553</p>
-            <p>Github: <a href="https://github.com/Sheshansm4/" target="_blank">github.com/Sheshansm4</a></p>
-            <p>Linkedin: <a href="https://www.linkedin.com/in/sheshansm/" target="_blank">linkedin.com/in/sheshansm</a></p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">DevOps &amp; Cloud</div>
+        <div class="tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Linux</span>
+          <span class="tag">AWS EC2</span>
+          <span class="tag">AWS S3</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- PROJECTS -->
+<section id="projects" class="section-white">
+  <div class="container">
+    <div class="eyebrow">Work</div>
+    <h2 class="section-heading">Featured <em>Projects</em></h2>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">Multi-Agent Intelligent Climate Risk Assessment System</div>
+        <span class="project-badge">M.Tech Research</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Engineered a production-grade Python ML pipeline covering data ingestion, preprocessing, HistGradientBoosting forecasting, composite risk scoring, and structured JSON output — deployed across 87 pan-India cities.</li>
+        <li>Designed and deployed a LangGraph multi-agent system with 7 specialised agents (AQI, Weather, GHG, RiskClassification, MitigationPlanning, EvidenceRAG, Orchestrator) coordinated via a shared state bus.</li>
+        <li>Built a ChromaDB RAG pipeline with semantic embeddings over WHO/IPCC/CPCB policy corpora for grounded LLM climate risk outputs and response quality monitoring.</li>
+        <li>Defined a weighted composite risk score (CRS = 0.4×AQI + 0.3×WQI + 0.2×Vulnerability + 0.1×Pop) as a live parity gate; integrated Open-Meteo and Climate TRACE APIs with benchmark evaluation across daily, weekly, and monthly horizons.</li>
+      </ul>
+      <div class="stack">
+        <span class="stack-tag">Python</span><span class="stack-tag">LangGraph</span><span class="stack-tag">ChromaDB</span><span class="stack-tag">RAG</span><span class="stack-tag">Claude API</span><span class="stack-tag">Streamlit</span><span class="stack-tag">Open-Meteo API</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">Federated Learning-Based Intrusion Detection System</div>
+        <span class="project-badge">IoT Security</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Implemented a FedAvg-based federated learning pipeline across 3 simulated edge nodes (7,000 records, 43 features), achieving 96.6% global Random Forest accuracy with zero raw-data sharing.</li>
+        <li>Authored a benchmark-ready synthetic dataset (7,001 rows, 12 scenarios, 6 attack types) with labelled risk tiers and 4-tier score-thresholded routing logic.</li>
+        <li>Shipped a SHAP-based XAI module delivering feature importance rankings and per-prediction reasoning traces; surfaced via a full-stack Streamlit dashboard with FL simulation, incident history, and PDF report generation.</li>
+      </ul>
+      <div class="stack">
+        <span class="stack-tag">Python</span><span class="stack-tag">Federated Learning</span><span class="stack-tag">Random Forest</span><span class="stack-tag">SHAP</span><span class="stack-tag">Streamlit</span><span class="stack-tag">Scikit-Learn</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">Offline YouTube Video Summariser</div>
+        <span class="project-badge">AI Web App</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Developed an AI-powered web application that generates concise summaries from YouTube videos using a fully offline processing pipeline, eliminating dependency on external AI APIs after initial model setup.</li>
+        <li>Engineered the end-to-end audio pipeline using yt-dlp and FFmpeg for extraction, feeding into Faster-Whisper for local speech-to-text transcription with 95% accuracy across 10 formats and content exceeding 2 hours.</li>
+        <li>Integrated BART Large CNN for abstractive summarisation, applying chunk-splitting logic to handle long transcripts and overcome transformer context limitations.</li>
+        <li>Built a Flask-based web interface for URL submission and summary display; designed on-device storage for audio, transcripts, summaries, and models — privacy-friendly with no recurring cloud costs.</li>
+      </ul>
+      <div class="stack">
+        <span class="stack-tag">Python</span><span class="stack-tag">Flask</span><span class="stack-tag">Faster-Whisper</span><span class="stack-tag">BART Large CNN</span><span class="stack-tag">Hugging Face</span><span class="stack-tag">yt-dlp</span><span class="stack-tag">FFmpeg</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section-wash">
+  <div class="container">
+    <div class="eyebrow">Background</div>
+    <h2 class="section-heading">Education &amp; <em>Certifications</em></h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-degree">M.Tech — Data Science</div>
+        <div class="t-school">JSS Science and Technology University, Mysuru</div>
+        <div class="t-year">2024 – Present</div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot muted"></div>
+        <div class="t-degree">B.E. — Electronics &amp; Communication Engineering</div>
+        <div class="t-school">Bangalore Institute of Technology &nbsp;·&nbsp; CGPA 7.3</div>
+        <div class="t-year">2018 – 2022</div>
+      </div>
+    </div>
+    <div class="cert-row">
+      <span class="cert-pill">AWS · DevOps</span>
+      <span class="cert-name">The Complete 2024 DevOps and AWS Bootcamp</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-white">
+  <div class="container">
+    <div class="eyebrow" style="text-align:center">Let's connect</div>
+    <h2 class="contact-heading">Open to<br><em style="font-style:normal;color:var(--accent)">Opportunities</em></h2>
+    <p class="contact-sub">Looking for AI/ML engineering roles and internships. Always happy to talk about projects, ideas, or a potential collaboration.</p>
+    <div class="contact-links">
+      <a href="mailto:yashasg50@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        yashasg50@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/sheshansm" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/sheshansm
+      </a>
+      <a href="https://github.com/Sheshansm4" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        github.com/Sheshansm4
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>Sheshan S Maniyur &nbsp;·&nbsp; Built with HTML &amp; CSS &nbsp;·&nbsp; 2025</footer>
+
 </body>
 </html>
